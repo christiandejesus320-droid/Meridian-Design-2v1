@@ -25,16 +25,26 @@ El objetivo fue conservar una experiencia visual expresiva, profesional y adapta
 
 ## Publicación
 
-El repositorio está preparado para publicarse directamente con GitHub Pages desde la rama `main` y la carpeta raíz.
+El repositorio conserva la publicación estática de GitHub Pages desde `main` y la raíz, pero también incluye una configuración de Netlify para el chat real y los formularios.
 
-No requiere `npm install`, proceso de compilación ni servidor propio. El archivo principal es `index.html`.
+En Netlify, el comando de build crea `dist/` con los archivos públicos y mantiene `netlify/functions/` fuera de ese directorio. Configura `GEMINI_API_KEY` desde la UI de Netlify con alcance **Functions** y, opcionalmente, `GEMINI_MODEL=gemini-3.5-flash`. La clave nunca debe entrar a GitHub, HTML, JavaScript del navegador ni query params.
+
+El chat público usa Gemini para creatividad, briefs, estrategia y análisis de archivos compatibles. Las operaciones privadas (tareas, CRM, calendario, notas, skills e integraciones) siguen en Meridian App detrás de NextAuth/JWT y permisos por usuario; hacer que una página anónima “acceda a todo” con una clave global rompería ese aislamiento. El botón **Abrir modo operativo** lleva a la aplicación autenticada.
+
+No requiere `npm install` ni dependencias externas para el sitio. El archivo principal es `index.html`.
 
 ## Estructura
 
 ```text
 .
-├── index.html   # Experiencia completa de Meridian Design
-└── README.md    # Información, autoría y créditos del proyecto
+├── index.html                 # Home y chat público
+├── ecosystem.html             # Cosmos visual de integraciones
+├── planes.html                # Propuesta visual de suscripciones
+├── contacto.html              # Formulario Netlify / fallback mailto
+├── meridian-system.css        # Sistema visual compartido
+├── netlify/functions/chat.mjs # Proxy seguro hacia Gemini
+├── netlify.toml               # Build, funciones y headers
+└── README.md                  # Información, publicación y límites
 ```
 
 ## Propiedad
