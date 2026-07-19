@@ -63,34 +63,54 @@
   </main>
 
   <footer class="system-footer"><div class="system-shell system-footer-inner"><b>MERIDIAN © 2026</b><span>Planes visuales · Sin cobro automático</span><a href="index.html#inicio">Volver a Home ↑</a></div></footer>
-  <script src="https://www.paypal.com/sdk/js?client-id=Aakl2vBzJSvOd27wrMEafYbeDnuoEp6mpryV0bLhuwazTsdt-HvIpM413RGd-k19T_mXqyAnv9jfb1sv&amp;vault=true&amp;intent=subscription" data-sdk-integration-source="button-factory"></script>
   <script>
     (() => {
       const paypalStyle = { shape: "rect", color: "gold", layout: "vertical", label: "subscribe" };
+      const paypalSdkUrl = "https://www.paypal.com/sdk/js?client-id=Aakl2vBzJSvOd27wrMEafYbeDnuoEp6mpryV0bLhuwazTsdt-HvIpM413RGd-k19T_mXqyAnv9jfb1sv&vault=true&intent=subscription";
+      const paypalSlots = [...document.querySelectorAll("[data-paypal-slot]")];
+      let paypalSdkPromise;
       const setStatus = (slot, message, state = "") => {
         const status = slot.parentElement.querySelector("[data-paypal-status]");
         if (status) { status.textContent = message; status.dataset.state = state; }
       };
-      const renderSubscriptions = () => {
-        if (!window.paypal) {
-          document.querySelectorAll("[data-paypal-slot]").forEach((slot) => setStatus(slot, "PayPal no pudo cargarse. Recarga la página para volver a intentarlo.", "error"));
-          return;
-        }
-        document.querySelectorAll("[data-paypal-slot]").forEach((slot) => {
-          if (slot.dataset.rendered === "true") return;
-          slot.dataset.rendered = "true";
+      const loadPayPalSdk = () => {
+        if (window.paypal) return Promise.resolve(window.paypal);
+        if (paypalSdkPromise) return paypalSdkPromise;
+        paypalSlots.forEach((slot) => setStatus(slot, "Preparando PayPal…"));
+        paypalSdkPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = paypalSdkUrl;
+          script.async = true;
+          script.crossOrigin = "anonymous";
+          script.dataset.sdkIntegrationSource = "button-factory";
+          script.onload = () => window.paypal ? resolve(window.paypal) : reject(new Error("PayPal SDK unavailable"));
+          script.onerror = () => reject(new Error("PayPal SDK failed"));
+          document.head.appendChild(script);
+        });
+        return paypalSdkPromise;
+      };
+      const renderSlot = (slot) => {
+        if (slot.dataset.rendered === "true" || slot.dataset.loading === "true") return;
+        slot.dataset.loading = "true";
+        loadPayPalSdk().then((paypal) => {
           const planId = slot.dataset.planId;
           const planName = slot.dataset.planName;
-          window.paypal.Buttons({
+          paypal.Buttons({
             style: paypalStyle,
             createSubscription: (data, actions) => actions.subscription.create({ plan_id: planId }),
-            onApprove: (data) => setStatus(slot, `Suscripción de ${planName} aprobada. Meridian verificará tu acceso.`, "success"),
+            onApprove: () => setStatus(slot, `Suscripción de ${planName} aprobada. Meridian verificará tu acceso.`, "success"),
             onError: () => setStatus(slot, "No se pudo iniciar PayPal. Inténtalo de nuevo.", "error")
-          }).render(`#${slot.id}`).catch(() => setStatus(slot, "No se pudo mostrar el botón de PayPal.", "error"));
-        });
+          }).render(`#${slot.id}`).then(() => { slot.dataset.rendered = "true"; }).catch(() => setStatus(slot, "No se pudo mostrar el botón de PayPal.", "error"));
+        }).catch(() => setStatus(slot, "PayPal no pudo cargarse. Toca recargar para volver a intentarlo.", "error"));
       };
-      if (window.paypal) renderSubscriptions();
-      else window.addEventListener("load", renderSubscriptions, { once: true });
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+          if (entry.isIntersecting) { renderSlot(entry.target); observer.unobserve(entry.target); }
+        }), { rootMargin: "280px 0px" });
+        paypalSlots.forEach((slot) => observer.observe(slot));
+      } else {
+        window.setTimeout(() => paypalSlots.forEach(renderSlot), 0);
+      }
     })();
   </script>
   <script src="meridian-system.js" defer></script>
