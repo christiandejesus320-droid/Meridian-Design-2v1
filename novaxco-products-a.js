@@ -1,1 +1,0 @@
-window.NOVAXCO_PRODUCTS_A=[];
