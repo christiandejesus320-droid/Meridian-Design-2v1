@@ -5,6 +5,7 @@
   const setPageMenu = (open) => {
     if (!pageMenuButton || !pageLinks) return;
     pageMenuButton.setAttribute("aria-expanded", String(open));
+    pageMenuButton.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
     pageLinks.classList.toggle("open", open);
     document.body.classList.toggle("menu-open", open);
   };
@@ -13,6 +14,10 @@
   pageLinks?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setPageMenu(false)));
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setPageMenu(false);
+  });
+  window.addEventListener("pageshow", () => setPageMenu(false));
+  window.matchMedia("(min-width: 761px)").addEventListener?.("change", (event) => {
+    if (event.matches) setPageMenu(false);
   });
 
   const observer = "IntersectionObserver" in window
@@ -55,4 +60,3 @@
     window.location.href = `mailto:christiandejesus320@gmail.com?subject=${subject}&body=${body}`;
   });
 })();
-
