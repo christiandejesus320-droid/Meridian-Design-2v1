@@ -69,6 +69,20 @@
     }));
   }
 
+  async function fetchWithTimeout(url, timeout = 12000) {
+    const controller = typeof AbortController === "function" ? new AbortController() : null;
+    const timer = setTimeout(() => controller?.abort(), timeout);
+    try {
+      return await fetch(url, {
+        cache: "no-store",
+        signal: controller?.signal,
+        headers: { Accept: "application/json" },
+      });
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
   function visibleProducts() {
     const query = search.value.toLowerCase().trim();
     return products.filter((product) => {
@@ -139,9 +153,11 @@
   async function loadProducts() {
     products = fallbackProducts();
     renderProducts();
-    status.textContent = "Conectando con el catálogo oficial de Shopify…";
+    status.innerHTML = products.length
+      ? `<span class="live-dot"></span> Catálogo listo · conectando precios con Shopify…`
+      : "Conectando con el catálogo oficial de Shopify…";
     try {
-      const response = await fetch("/api/shopify-products", { cache: "no-store" });
+      const response = await fetchWithTimeout(`/api/shopify-products?t=${Date.now()}`);
       if (!response.ok) throw new Error(`Shopify respondió ${response.status}`);
       const payload = await response.json();
       if (!Array.isArray(payload.products) || !payload.products.length) throw new Error("Catálogo vacío");
@@ -150,7 +166,11 @@
       renderProducts();
     } catch (error) {
       console.warn("No se pudo actualizar Shopify:", error);
-      status.textContent = "Mostrando el catálogo guardado. La ficha oficial mantiene precios y disponibilidad actuales.";
+      products = fallbackProducts();
+      renderProducts();
+      status.textContent = products.length
+        ? "Catálogo disponible. Las fichas oficiales mantienen precios y disponibilidad actuales."
+        : "No pudimos cargar el catálogo. Abre la tienda oficial para continuar.";
     }
   }
 
