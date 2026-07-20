@@ -39,14 +39,18 @@
 
   function loadCart() {
     try {
-      return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+      return JSON.parse(window.localStorage.getItem(CART_KEY)) || [];
     } catch {
       return [];
     }
   }
 
   function saveCart() {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    try {
+      window.localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    } catch (error) {
+      console.warn("El navegador no permitió guardar el carrito:", error);
+    }
     renderCart();
   }
 
