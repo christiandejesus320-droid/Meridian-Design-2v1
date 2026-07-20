@@ -1,0 +1,1 @@
+-- Meridian public AI memory migration source is deployed in Supabase.
