@@ -1,0 +1,1 @@
+Sincronizacion segura: el backend autenticado puede enviar x-meridian-user-id y x-meridian-sync-token. La Edge Function enlaza la conversacion y refleja mensajes en AIChat y AIChatMessage. Sin token, el chat publico permanece aislado.
