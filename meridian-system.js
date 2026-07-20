@@ -37,22 +37,4 @@
 
   const sentNotice = document.getElementById("formStatus");
   if (sentNotice && new URLSearchParams(window.location.search).get("enviado") === "1") sentNotice.hidden = false;
-
-  const contactForm = document.querySelector("form[data-meridian-contact]");
-  contactForm?.addEventListener("submit", (event) => {
-    if (!window.location.hostname.endsWith("github.io") && window.location.protocol !== "file:") return;
-    event.preventDefault();
-    const data = new FormData(contactForm);
-    const subject = encodeURIComponent(`Meridian · ${data.get("plan") || "Nuevo proyecto"}`);
-    const body = encodeURIComponent([
-      `Nombre: ${data.get("nombre") || ""}`,
-      `Email: ${data.get("email") || ""}`,
-      `Plan: ${data.get("plan") || ""}`,
-      `Enlace: ${data.get("enlace") || ""}`,
-      "",
-      String(data.get("mensaje") || ""),
-    ].join("\n"));
-    window.location.href = `mailto:christiandejesus320@gmail.com?subject=${subject}&body=${body}`;
-  });
 })();
-
