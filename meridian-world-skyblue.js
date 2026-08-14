@@ -2,10 +2,12 @@
   var frame=document.getElementById('meridian-world-frame');
   var oldCanvas=document.getElementById('meridian-globe-canvas');
   if(!frame||!oldCanvas)return;
+  if(window.__MERIDIAN_STOP_BASE_GLOBE__)window.__MERIDIAN_STOP_BASE_GLOBE__();
 
   var canvas=document.createElement('canvas');
   canvas.id='meridian-globe-canvas-sky';
-  canvas.setAttribute('aria-label','Meridian Live World 3D');
+  canvas.setAttribute('aria-label','Globo 3D de actividad pública agregada de Meridian');
+  canvas.setAttribute('role','img');
   oldCanvas.replaceWith(canvas);
 
   var labelsLayer=document.createElement('div');
@@ -17,11 +19,11 @@
   style.textContent=`
     .meridian-user-marker-label{position:absolute;translate:-50% -10px;min-width:150px;max-width:220px;padding:8px 10px;border:1px solid rgba(125,211,252,.28);border-radius:12px;background:rgba(2,12,20,.86);box-shadow:0 10px 34px rgba(14,165,233,.18),0 0 22px rgba(56,189,248,.12);backdrop-filter:blur(14px);color:#e0f2fe;white-space:nowrap;transition:opacity .18s ease,filter .18s ease,transform .18s ease;pointer-events:none}
     .meridian-user-marker-label .muw-row{display:flex;align-items:center;gap:8px}
-    .meridian-user-marker-label .muw-avatar{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(125,211,252,.35);background:rgba(56,189,248,.12);color:#7dd3fc;font:800 10px/1 Inter,system-ui,sans-serif;box-shadow:0 0 18px rgba(56,189,248,.16)}
+    .meridian-user-marker-label .muw-avatar{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(125,211,252,.35);background:rgba(56,189,248,.12);color:#7dd3fc;font:800 10px/1 "Avenir Next","Segoe UI",system-ui,sans-serif;box-shadow:0 0 18px rgba(56,189,248,.16)}
     .meridian-user-marker-label .muw-avatar img{width:100%;height:100%;object-fit:cover;display:block}
     .meridian-user-marker-label .muw-copy{min-width:0}
-    .meridian-user-marker-label strong{display:block;max-width:150px;overflow:hidden;text-overflow:ellipsis;color:#f0f9ff;font:750 11px/1.25 Inter,system-ui,sans-serif}
-    .meridian-user-marker-label small{display:block;margin-top:3px;max-width:165px;overflow:hidden;text-overflow:ellipsis;color:#7dd3fc;font:600 9px/1.2 Inter,system-ui,sans-serif}
+    .meridian-user-marker-label strong{display:block;max-width:150px;overflow:hidden;text-overflow:ellipsis;color:#f0f9ff;font:750 11px/1.25 "Avenir Next","Segoe UI",system-ui,sans-serif}
+    .meridian-user-marker-label small{display:block;margin-top:3px;max-width:165px;overflow:hidden;text-overflow:ellipsis;color:#7dd3fc;font:600 9px/1.2 "Avenir Next","Segoe UI",system-ui,sans-serif}
     .meridian-user-marker-label .muw-live{width:7px;height:7px;border-radius:50%;background:#38bdf8;box-shadow:0 0 0 4px rgba(56,189,248,.10),0 0 18px rgba(56,189,248,.95);flex:0 0 auto}
     @supports not (anchor-name:--test){.meridian-user-marker-label{display:none!important}}
   `;
@@ -38,6 +40,12 @@
   var dragPhi=0;
   var dragTheta=0;
   var dragging=false;
+  var reducedMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motionPaused=Boolean(reducedMotion);
+  var motionToggle=document.getElementById('mw-motion-toggle');
+  function updateMotionControl(){if(!motionToggle)return;motionToggle.setAttribute('aria-pressed',(motionPaused||reducedMotion)?'true':'false');motionToggle.textContent=reducedMotion?'Rotación reducida':(motionPaused?'Reanudar rotación':'Pausar rotación');motionToggle.disabled=reducedMotion;}
+  if(motionToggle){motionToggle.addEventListener('click',function(){if(reducedMotion)return;motionPaused=!motionPaused;updateMotionControl();});updateMotionControl();}
+  document.addEventListener('visibilitychange',function(){if(document.hidden&&globe)globe.update({phi:phi+dragPhi,theta:theta+dragTheta,markers:currentMarkers});});
 
   var COUNTRY_FALLBACKS={
     DO:[18.7,-70.2],US:[39.5,-98.4],PR:[18.2,-66.5],CA:[56.1,-106.3],MX:[23.6,-102.5],
@@ -176,8 +184,9 @@
       glowColor:[.08,.40,.62],
       markerElevation:.08,
       markers:currentMarkers,
+      scale:1.03,
       onRender:function(state){
-        if(!dragging)phi+=.0032;
+        if(!dragging&&!motionPaused&&!reducedMotion&&!document.hidden)phi+=.0032;
         state.phi=phi+dragPhi;
         state.theta=clamp(theta+dragTheta,-.58,.68);
         state.markers=currentMarkers;
@@ -232,7 +241,7 @@
         var label=document.getElementById('mw-status-text');
         var badge=document.getElementById('mw-status');
         if(status==='SUBSCRIBED'){
-          if(label)label.textContent='Usuarios reales · Realtime';
+          if(label)label.textContent=reducedMotion?'Usuarios reales · movimiento pausado':'Usuarios reales · Realtime';
           if(badge)badge.classList.add('online');
           syncPresence(presence.presenceState());
         }

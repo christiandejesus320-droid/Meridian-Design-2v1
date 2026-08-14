@@ -1,8 +1,9 @@
 window.__MERIDIAN_CHUNKS.push(`
 <style>
-  .meridian-live-world{position:relative;min-height:100vh;padding:110px 34px 72px;background:#080808;color:#f7f2ea;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.08);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  .meridian-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+  .meridian-live-world{position:relative;min-height:100vh;padding:110px 34px 72px;background:#080808;color:#f7f2ea;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.08);font-family:"Avenir Next","Segoe UI",ui-sans-serif,system-ui,sans-serif}
   .meridian-live-world *{box-sizing:border-box}
-  .meridian-live-world::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 72% 30%,rgba(225,122,93,.16),transparent 25%),radial-gradient(circle at 15% 12%,rgba(255,255,255,.06),transparent 22%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,auto,44px 44px,44px 44px;mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.95) 72%,transparent 100%);pointer-events:none}
+  .meridian-live-world::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 72% 30%,rgba(225,122,93,.16),transparent 25%),radial-gradient(circle at 15% 12%,rgba(255,255,255,.06),transparent 22%);mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.95) 72%,transparent 100%);pointer-events:none}
   .meridian-live-shell{position:relative;z-index:2;max-width:1480px;margin:0 auto}
   .meridian-live-top{display:grid;grid-template-columns:minmax(0,.82fr) minmax(520px,1.18fr);gap:52px;align-items:center}
   .meridian-live-copy{max-width:650px}
@@ -28,7 +29,13 @@ window.__MERIDIAN_CHUNKS.push(`
   .meridian-world-orbit{position:absolute;width:min(690px,90%);aspect-ratio:1;border:1px solid rgba(255,255,255,.06);border-radius:50%;box-shadow:0 0 0 60px rgba(255,255,255,.015),0 0 0 120px rgba(255,255,255,.01);pointer-events:none}
   .meridian-world-orbit::before,.meridian-world-orbit::after{content:'';position:absolute;inset:12%;border:1px dashed rgba(225,122,93,.11);border-radius:50%;transform:rotate(28deg) scaleY(.38)}
   .meridian-world-orbit::after{inset:25%;transform:rotate(-22deg) scaleY(.62);border-color:rgba(255,255,255,.07)}
-  .meridian-world-frame{position:relative;width:min(650px,92vw);aspect-ratio:1;display:flex;align-items:center;justify-content:center;transition:filter .25s ease}
+  .meridian-world-frame{position:relative;width:min(650px,92vw);aspect-ratio:1;display:flex;align-items:center;justify-content:center;transition:filter .25s ease;isolation:isolate}
+  .meridian-world-controls{position:absolute;left:3%;bottom:8%;z-index:6;display:flex;align-items:center;gap:10px}
+  .meridian-world-controls button{min-height:40px;padding:0 13px;border:1px solid rgba(125,211,252,.2);border-radius:10px;background:rgba(3,10,16,.82);backdrop-filter:blur(16px);color:#bae6fd;font:700 10px/1 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+  .meridian-world-controls button:hover{border-color:rgba(56,189,248,.75);background:rgba(14,116,144,.22);transform:translateY(-1px)}
+  .meridian-world-controls button:focus-visible{outline:3px solid rgba(125,211,252,.9);outline-offset:3px}
+  .meridian-world-hint{color:#64748b;font-size:10px;letter-spacing:.04em}
+  .meridian-world-visual:focus-within .meridian-world-frame{filter:drop-shadow(0 32px 95px rgba(14,165,233,.28))}
   .meridian-world-frame.is-pulsing{filter:drop-shadow(0 0 26px rgba(225,122,93,.45))}
   .meridian-world-frame::after{content:'';position:absolute;inset:7%;border:1px solid rgba(225,122,93,.08);border-radius:50%;pointer-events:none;animation:meridianWorldHalo 3.2s ease-out infinite}
   @keyframes meridianWorldHalo{0%{transform:scale(.9);opacity:.45}75%,100%{transform:scale(1.08);opacity:0}}
@@ -67,47 +74,47 @@ window.__MERIDIAN_CHUNKS.push(`
   .meridian-city span{font-size:9px;color:#68635e}
   .meridian-live-footnote{margin:18px 2px 0;color:#514d49;font-size:9px;line-height:1.55;text-align:right}
   @media(max-width:1080px){.meridian-live-top{grid-template-columns:1fr}.meridian-live-copy{max-width:780px}.meridian-world-visual{min-height:560px}.meridian-live-panels{grid-template-columns:1fr 1fr}.meridian-live-panel:first-child{grid-column:1/-1}}
-  @media(max-width:720px){.meridian-live-world{padding:88px 16px 50px}.meridian-live-title{font-size:clamp(3.1rem,17vw,5.2rem)}.meridian-live-metrics{grid-template-columns:1fr 1fr}.meridian-world-visual{min-height:430px;margin-top:20px}.meridian-world-status{top:4%;left:0}.meridian-world-caption{right:0;bottom:2%;width:180px}.meridian-live-panels{grid-template-columns:1fr}.meridian-live-panel:first-child{grid-column:auto}.meridian-live-panel{min-height:250px}}
-  @media(prefers-reduced-motion:reduce){.meridian-live-kicker i,.meridian-world-frame::after{animation:none}.meridian-live-actions a{transition:none}}
+  @media(max-width:720px){.meridian-live-world{padding:88px 16px 50px}.meridian-live-title{font-size:clamp(3.1rem,17vw,5.2rem)}.meridian-live-metrics{grid-template-columns:1fr 1fr}.meridian-world-visual{min-height:430px;margin-top:20px}.meridian-world-status{top:4%;left:0}.meridian-world-caption{right:0;bottom:2%;width:180px}.meridian-world-controls{left:0;bottom:0;flex-wrap:wrap}.meridian-world-hint{display:none}.meridian-live-panels{grid-template-columns:1fr}.meridian-live-panel:first-child{grid-column:auto}.meridian-live-panel{min-height:250px}}
+  @media(prefers-reduced-motion:reduce){.meridian-live-kicker i,.meridian-world-frame::after,.meridian-world-orbit{animation:none}.meridian-live-actions a,.meridian-world-controls button{transition:none}.meridian-world-hint{display:none}}
 </style>
 <section class="meridian-live-world" id="meridian-globe" aria-label="Meridian Live World">
   <div class="meridian-live-shell">
     <div class="meridian-live-top">
       <div class="meridian-live-copy">
-        <div class="meridian-live-kicker"><i></i><span>Meridian completo · señal en vivo</span></div>
+        <div class="meridian-live-kicker"><i></i><span>Meridian completo · nodo vivo</span></div>
         <h2 class="meridian-live-title">Meridian está<span>vivo.</span></h2>
-        <p class="meridian-live-desc">Una vista en tiempo real de la actividad pública y agregada del ecosistema Meridian. Cada pulso del globo proviene de una sesión o evento real de Meridian completo.</p>
-        <div class="meridian-live-note"><span>◎</span><span><b>Privacidad por diseño:</b> solo mostramos ciudad/país aproximados y actividad de producto. Nunca emails, IP, chats, documentos, CRM ni ubicación exacta.</span></div>
-        <div class="meridian-live-actions"><a class="primary" href="https://meridian-completo.vercel.app/">Abrir Meridian</a><a class="secondary" href="#meridian-live-activity">Ver actividad global</a></div>
+        <p class="meridian-live-desc">Un globo 3D en movimiento que traduce la actividad pública y agregada de Meridian completo en señales visibles: sesiones, eventos y lugares activos, sin exponer la identidad de nadie.</p>
+        <div class="meridian-live-note"><span aria-hidden="true">◎</span><span><b>Privacidad por diseño:</b> mostramos ciudad o país aproximado y actividad de producto. Nunca emails, IP, chats, documentos, CRM ni ubicación exacta.</span></div>
+        <div class="meridian-live-actions"><a class="primary" href="https://meridian-completo.vercel.app/">Abrir Meridian completo</a><a class="secondary" href="#meridian-live-activity">Explorar la señal global</a></div>
         <div class="meridian-live-metrics">
-          <div class="meridian-live-metric"><strong id="mw-online">0</strong><span>Online ahora</span></div>
+          <div class="meridian-live-metric"><strong id="mw-online">0</strong><span>Conectados ahora</span></div>
           <div class="meridian-live-metric"><strong id="mw-today">0</strong><span>Eventos hoy</span></div>
-          <div class="meridian-live-metric"><strong id="mw-countries">0</strong><span>Países activos</span></div>
+          <div class="meridian-live-metric"><strong id="mw-countries">0</strong><span>Países con señal</span></div>
           <div class="meridian-live-metric"><strong id="mw-reviews">0</strong><span>Reseñas públicas</span></div>
         </div>
       </div>
-      <div class="meridian-world-visual" aria-hidden="true">
+      <div class="meridian-world-visual" role="group" aria-label="Globo 3D animado con actividad pública agregada de Meridian" aria-describedby="mw-world-summary">
         <div class="meridian-world-orbit"></div>
-        <div class="meridian-world-frame" id="meridian-world-frame"><canvas id="meridian-globe-canvas"></canvas></div>
-        <div class="meridian-world-status" id="mw-status"><i></i><span id="mw-status-text">Conectando Realtime</span></div>
-        <div class="meridian-world-caption"><small>Última señal</small><strong id="mw-last-signal">Esperando actividad real…</strong></div>
+        <div class="meridian-world-frame" id="meridian-world-frame"><canvas id="meridian-globe-canvas" aria-label="Globo 3D de actividad pública de Meridian"></canvas></div>
+        <div class="meridian-world-status" id="mw-status"><i></i><span id="mw-status-text">Inicializando mundo 3D</span></div>
+        <div class="meridian-world-caption"><small>Señal más reciente</small><strong id="mw-last-signal">Esperando una señal real…</strong></div><div class="meridian-world-controls" role="group" aria-label="Controles del globo 3D"><button type="button" id="mw-motion-toggle" aria-pressed="false">Pausar rotación</button><span class="meridian-world-hint">Arrastra para explorar</span></div><p class="meridian-sr-only" id="mw-world-summary">El globo gira lentamente y muestra señales agregadas. Puedes arrastrarlo para explorar y pausar la rotación.</p>
       </div>
     </div>
     <div class="meridian-live-panels" id="meridian-live-activity">
       <section class="meridian-live-panel">
-        <div class="meridian-live-panel-head"><h3>Live Activity</h3><span>Meridian completo</span></div>
+        <div class="meridian-live-panel-head"><h3>Actividad en vivo</h3><span>Meridian completo</span></div>
         <div class="meridian-live-feed" id="mw-feed"><div class="meridian-empty">Conectando con la actividad real de Meridian…</div></div>
       </section>
       <section class="meridian-live-panel">
-        <div class="meridian-live-panel-head"><h3>Community Reviews</h3><span>Verificadas</span></div>
+        <div class="meridian-live-panel-head"><h3>Reseñas de la comunidad</h3><span>Verificadas</span></div>
         <div class="meridian-review-list" id="mw-review-list"><div class="meridian-empty">Las reseñas aprobadas aparecerán aquí en tiempo real.</div></div>
       </section>
       <section class="meridian-live-panel">
-        <div class="meridian-live-panel-head"><h3>Active Locations</h3><span>Agregado</span></div>
+        <div class="meridian-live-panel-head"><h3>Ubicaciones activas</h3><span>Agregadas</span></div>
         <div class="meridian-city-list" id="mw-city-list"><div class="meridian-empty">Esperando ciudades activas…</div></div>
       </section>
     </div>
-    <div class="meridian-live-footnote">Datos públicos agregados desde Supabase Realtime · coordenadas reducidas a precisión de ciudad.</div>
+    <div class="meridian-live-footnote">Señales públicas agregadas desde Supabase Realtime · coordenadas reducidas a precisión de ciudad.</div>
   </div>
 </section>
 `);
@@ -124,6 +131,8 @@ window.__MERIDIAN_CHUNKS.push(`
   var thetaOffset = 0;
   var paused = false;
   var phi = 0;
+  var baseFrame = null;
+  var baseStopped = false;
 
   function $(id){ return document.getElementById(id); }
   function escapeHtml(value){ return String(value == null ? "" : value).replace(/[&<>"']/g,function(ch){ return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"})[ch]; }); }
@@ -206,8 +215,10 @@ window.__MERIDIAN_CHUNKS.push(`
     canvas.addEventListener('pointerdown',function(e){pointer={x:e.clientX,y:e.clientY};paused=true;canvas.style.cursor='grabbing';});
     window.addEventListener('pointerup',function(){if(pointer){phiOffset+=drag.phi;thetaOffset+=drag.theta;drag={phi:0,theta:0};}pointer=null;paused=false;if(canvas)canvas.style.cursor='grab';});
     window.addEventListener('pointermove',function(e){if(pointer){drag={phi:(e.clientX-pointer.x)/300,theta:(e.clientY-pointer.y)/1000};}});
-    function animate(){if(!paused)phi+=.0017; if(globe)globe.update({phi:phi+phiOffset+drag.phi,theta:.18+thetaOffset+drag.theta,markers:currentMarkers}); requestAnimationFrame(animate);} animate();
+    function animate(){if(baseStopped)return; if(!paused)phi+=.0017; if(globe)globe.update({phi:phi+phiOffset+drag.phi,theta:.18+thetaOffset+drag.theta,markers:currentMarkers}); baseFrame=requestAnimationFrame(animate);} animate();
   }
+
+  window.__MERIDIAN_STOP_BASE_GLOBE__=function(){baseStopped=true;if(baseFrame)cancelAnimationFrame(baseFrame);if(globe&&typeof globe.destroy==='function')globe.destroy();globe=null;};
 
   function loadGlobe(){
     if(typeof createGlobe!=="undefined"){initGlobe();return;}

@@ -1,7 +1,7 @@
 window.__MERIDIAN_CHUNKS.push(`
 <style>
   .meridian-live-world{background:#03070b!important;color:#f0f9ff!important}
-  .meridian-live-world::before{background:radial-gradient(circle at 72% 30%,rgba(56,189,248,.22),transparent 28%),radial-gradient(circle at 18% 10%,rgba(125,211,252,.08),transparent 22%),linear-gradient(rgba(125,211,252,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(125,211,252,.028) 1px,transparent 1px)!important;background-size:auto,auto,44px 44px,44px 44px!important}
+  .meridian-live-world::before{background:radial-gradient(circle at 72% 30%,rgba(56,189,248,.22),transparent 28%),radial-gradient(circle at 18% 10%,rgba(125,211,252,.08),transparent 22%)!important}
   .meridian-live-kicker{border-color:rgba(125,211,252,.18)!important;background:rgba(2,132,199,.07)!important;color:#bae6fd!important}
   .meridian-live-kicker i{background:#38bdf8!important;box-shadow:0 0 0 5px rgba(56,189,248,.12),0 0 28px rgba(56,189,248,.9)!important}
   .meridian-live-title{color:#f0f9ff!important;text-shadow:0 8px 50px rgba(56,189,248,.06)}
@@ -22,7 +22,8 @@ window.__MERIDIAN_CHUNKS.push(`
   .meridian-world-frame::after{border-color:rgba(56,189,248,.32)!important;box-shadow:0 0 45px rgba(56,189,248,.12)!important}
   .meridian-world-frame.sky-pulse{filter:drop-shadow(0 0 44px rgba(56,189,248,.72)) drop-shadow(0 28px 80px rgba(14,165,233,.22))!important}
   @keyframes meridianAtmosphere{from{opacity:.55;transform:scale(.98)}to{opacity:1;transform:scale(1.025)}}
-  #meridian-globe-canvas-sky{position:relative;z-index:2;width:100%;height:100%;display:block;cursor:grab;touch-action:none;filter:drop-shadow(0 28px 82px rgba(2,132,199,.24));border-radius:50%}
+  #meridian-globe-canvas-sky{position:relative;z-index:2;width:100%;height:100%;display:block;cursor:grab;touch-action:none;filter:drop-shadow(0 28px 82px rgba(2,132,199,.24));border-radius:50%;outline:none}
+  #meridian-globe-canvas-sky:focus-visible{box-shadow:0 0 0 4px rgba(125,211,252,.82),0 0 36px rgba(56,189,248,.34)}
   #meridian-globe-canvas-sky:active{cursor:grabbing}
   .meridian-world-status{border-color:rgba(125,211,252,.14)!important;background:rgba(3,10,16,.78)!important;color:#94a3b8!important}
   .meridian-world-status.online i{background:#38bdf8!important;box-shadow:0 0 20px rgba(56,189,248,.95)!important}
@@ -35,7 +36,7 @@ window.__MERIDIAN_CHUNKS.push(`
   .meridian-live-row strong{color:#dff6ff!important}.meridian-live-row small,.meridian-live-row time{color:#64748b!important}
   .meridian-review-stars{color:#38bdf8!important}.meridian-review p{color:#cbd5e1!important}
   .meridian-city i{background:#38bdf8!important;box-shadow:0 0 19px rgba(56,189,248,.78)!important}.meridian-city strong{color:#dff6ff!important}.meridian-city span{color:#64748b!important}
-  @media(prefers-reduced-motion:reduce){.meridian-world-orbit,.meridian-world-frame::before{animation:none!important}}
+  @media(prefers-reduced-motion:reduce){.meridian-world-orbit,.meridian-world-frame::before{animation:none!important}.meridian-world-controls button{border-color:rgba(125,211,252,.34)!important}}
 </style>
 <script src="meridian-world-skyblue.js"></script>
 `);
