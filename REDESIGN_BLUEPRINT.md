@@ -19,3 +19,9 @@ La portada debe mantener una CTA primaria clara hacia la demo operativa y una CT
 ## Siguiente iteración recomendada
 
 La siguiente fase debería sincronizar estos tokens con el frontend de `meridian-completo`, añadir un estado visible de disponibilidad conectado a `GET /ai/capabilities` y probar contraste, teclado, lector de pantalla y rendimiento móvil en navegadores reales.
+
+## Integración de estados con Meridian API
+
+La interfaz pública consume una semántica equivalente al contrato `GET /ai/interaction-contract`: `idle`, `loading`, `streaming`, `confirmation_required`, `completed` y `error`. El chat anuncia preparación, completado y recuperación mediante un estado accesible, mantiene `aria-busy` sincronizado y no usa `alert()` como único canal de error.
+
+La navegación principal incorpora un skip link hacia `#main-content`, un landmark de navegación con nombre y controles táctiles de al menos 44 px. La página conserva la separación entre modo público y workspace autenticado: el frontend no asume permisos ni muestra acciones de escritura como si estuvieran disponibles.
