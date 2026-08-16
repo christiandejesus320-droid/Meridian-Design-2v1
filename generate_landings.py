@@ -4,7 +4,7 @@ from html import escape
 ROOT = Path(__file__).parent
 
 NAV = [('Home','index.html'),('Meridian','meridian.html'),('Plataforma','plataforma.html'),('Fundador','fundador.html'),('Diseños','disenos.html'),('Publicaciones','publicaciones.html'),('Cosmos','cosmos.html'),('Planes','planes.html'),('Chat IA','chat.html')]
-TECH = [('MCP','mcp.html'),('OpenAI','openai.html'),('Claude','claude.html'),('Google','google.html'),('GitHub','github.html'),('Vercel','vercel.html'),('Supabase','supabase.html'),('Notion','notion.html'),('Figma','figma.html')]
+TECH = [('MCP','mcp.html'),('OpenAI','openai.html'),('Claude','claude.html'),('Google','google.html'),('NVIDIA','nvidia.html'),('Cursor','cursor.html'),('GitHub','github.html'),('Vercel','vercel.html'),('Supabase','supabase.html'),('Notion','notion.html'),('Figma','figma.html'),('AWS','aws.html')]
 
 pages = {
  'meridian.html': dict(kicker='MERIDIAN / ORIGIN', title='Diseño, IA<br><em>y dirección.</em>', desc='Meridian Design es un estudio y plataforma creativa para convertir ideas complejas en marcas, productos y sistemas que se pueden usar.', image='assets/visual-05.png', cta='Conocer Meridian App', href='plataforma.html', eyebrow='Una práctica independiente desde Santo Domingo.', blocks=[('01 / IDEA','Diseño con contexto','Cada proyecto comienza con una pregunta clara y termina en una experiencia que puede crecer.'),('02 / SYSTEM','Una capa operativa','Meridian conecta estrategia, identidad, contenido, automatización y tecnología en un solo lenguaje.'),('03 / MOTION','Que se mueva','Diseñamos sistemas que se sienten vivos: interfaces, campañas, objetos 3D y herramientas que invitan a actuar.')]),
@@ -26,6 +26,9 @@ tech_pages = {
  'supabase.html': ('SUPABASE','Memoria,<br><em>no ruido.</em>','Supabase aporta base de datos, autenticación, almacenamiento y una superficie confiable para que Meridian recuerde.','assets/visual-06.png','https://supabase.com/','Visitar Supabase'),
  'notion.html': ('NOTION','La biblioteca<br><em>del sistema.</em>','Notion organiza documentos, decisiones, briefs y conocimiento para que cada proyecto tenga una fuente de verdad.','assets/visual-05.png','https://www.notion.so/','Visitar Notion'),
  'figma.html': ('FIGMA','De la idea al<br><em>prototipo.</em>','Figma convierte dirección de arte y pensamiento de producto en interfaces compartibles, comentables y listas para construir.','assets/visual-03.png','https://www.figma.com/','Visitar Figma'),
+ 'nvidia.html': ('NVIDIA','Cómputo para<br><em>lo imposible.</em>','NVIDIA aporta la capa de cómputo acelerado que sostiene modelos, visión, simulación y experiencias de IA con baja latencia.','assets/visual-02.png','https://www.nvidia.com/en-us/about-nvidia/','Visitar NVIDIA'),
+ 'cursor.html': ('CURSOR','Código con<br><em>dirección.</em>','Cursor ayuda a convertir briefs de Meridian en código, iteraciones y productos que pueden revisarse, probarse y desplegarse.','assets/visual-07.jpg','https://cursor.com/','Visitar Cursor'),
+ 'aws.html': ('AWS','Infraestructura<br><em>que escala.</em>','AWS aporta servicios de nube, almacenamiento y ejecución para que las experiencias Meridian puedan crecer con control.','assets/visual-06.png','https://aws.amazon.com/about-aws/','Visitar AWS'),
 }
 
 def header(active=''):
