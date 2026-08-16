@@ -41,6 +41,7 @@ window.__MERIDIAN_CHUNKS.push(`
   .meridian-world-caption{position:absolute;right:3%;bottom:10%;z-index:4;width:205px;padding:14px 15px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(10,10,10,.72);backdrop-filter:blur(18px)}
   .meridian-world-caption small{display:block;color:#6f6a65;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:760}
   .meridian-world-caption strong{display:block;margin-top:6px;color:#eee8df;font-size:13px;line-height:1.45;font-weight:650}
+  .meridian-world-controls{position:absolute;left:4%;bottom:10%;z-index:4;padding:10px 12px;border:1px solid rgba(255,255,255,.09);border-radius:11px;background:rgba(10,10,10,.66);backdrop-filter:blur(16px);color:#8e8982;font-size:9px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
   .meridian-live-panels{display:grid;grid-template-columns:1.18fr .9fr .82fr;gap:12px;margin-top:26px}
   .meridian-live-panel{min-height:310px;border:1px solid rgba(255,255,255,.09);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));overflow:hidden}
   .meridian-live-panel-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
@@ -88,8 +89,8 @@ window.__MERIDIAN_CHUNKS.push(`
       </div>
       <div class="meridian-world-visual" aria-hidden="true">
         <div class="meridian-world-orbit"></div>
-        <div class="meridian-world-frame" id="meridian-world-frame"><canvas id="meridian-globe-canvas"></canvas></div>
-        <div class="meridian-world-status" id="mw-status"><i></i><span id="mw-status-text">Conectando Realtime</span></div>
+        <div class="meridian-world-frame" id="meridian-world-frame"><canvas id="meridian-globe-canvas" tabindex="0" aria-label="Globo 3D interactivo de Meridian. Arrastra para girar y usa la rueda para acercar."></canvas></div>
+        <div class="meridian-world-status" id="mw-status"><i></i><span id="mw-status-text">Conectando Realtime</span></div><div class="meridian-world-controls" aria-live="polite">Arrastra para explorar · rueda para acercar</div>
         <div class="meridian-world-caption"><small>Última señal</small><strong id="mw-last-signal">Esperando actividad real…</strong></div>
       </div>
     </div>
@@ -202,11 +203,14 @@ window.__MERIDIAN_CHUNKS.push(`
   function initGlobe(){
     var canvas=$("meridian-globe-canvas"); if(!canvas||typeof createGlobe==="undefined"||globe)return;
     var size=Math.max(340,Math.round(canvas.getBoundingClientRect().width||620));
-    globe=createGlobe(canvas,{devicePixelRatio:Math.min(window.devicePixelRatio||1,2),width:size*2,height:size*2,phi:0,theta:.18,dark:1,diffuse:1.25,mapSamples:18000,mapBrightness:7.5,baseColor:[.17,.17,.17],markerColor:[.88,.48,.36],glowColor:[.07,.055,.045],markers:currentMarkers,markerElevation:.035});
-    canvas.addEventListener('pointerdown',function(e){pointer={x:e.clientX,y:e.clientY};paused=true;canvas.style.cursor='grabbing';});
-    window.addEventListener('pointerup',function(){if(pointer){phiOffset+=drag.phi;thetaOffset+=drag.theta;drag={phi:0,theta:0};}pointer=null;paused=false;if(canvas)canvas.style.cursor='grab';});
-    window.addEventListener('pointermove',function(e){if(pointer){drag={phi:(e.clientX-pointer.x)/300,theta:(e.clientY-pointer.y)/1000};}});
-    function animate(){if(!paused)phi+=.0017; if(globe)globe.update({phi:phi+phiOffset+drag.phi,theta:.18+thetaOffset+drag.theta,markers:currentMarkers}); requestAnimationFrame(animate);} animate();
+    var zoom=1;
+    globe=createGlobe(canvas,{devicePixelRatio:Math.min(window.devicePixelRatio||1,2),width:size*2,height:size*2,phi:0,theta:.18,scale:zoom,dark:1,diffuse:1.25,mapSamples:18000,mapBrightness:7.5,baseColor:[.17,.17,.17],markerColor:[.88,.48,.36],glowColor:[.07,.055,.045],markers:currentMarkers,markerElevation:.035});
+    canvas.addEventListener('pointerdown',function(e){pointer={x:e.clientX,y:e.clientY};paused=true;canvas.setPointerCapture&&canvas.setPointerCapture(e.pointerId);canvas.style.cursor='grabbing';});
+    canvas.addEventListener('pointerup',function(e){if(pointer){phiOffset+=drag.phi;thetaOffset+=drag.theta;drag={phi:0,theta:0};}pointer=null;paused=false;canvas.releasePointerCapture&&canvas.releasePointerCapture(e.pointerId);canvas.style.cursor='grab';});
+    canvas.addEventListener('pointercancel',function(){pointer=null;drag={phi:0,theta:0};paused=false;canvas.style.cursor='grab';});
+    canvas.addEventListener('pointermove',function(e){if(pointer){drag={phi:(e.clientX-pointer.x)/300,theta:(e.clientY-pointer.y)/1000};}});
+    canvas.addEventListener('wheel',function(e){e.preventDefault();zoom=Math.max(.78,Math.min(1.34,zoom+(e.deltaY<0?.06:-.06)));if(globe)globe.update({scale:zoom});},{passive:false});
+    function animate(){if(!paused)phi+=.0017; if(globe)globe.update({phi:phi+phiOffset+drag.phi,theta:.18+thetaOffset+drag.theta,scale:zoom,markers:currentMarkers}); requestAnimationFrame(animate);} animate();
   }
 
   function loadGlobe(){
