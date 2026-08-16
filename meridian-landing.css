@@ -9,3 +9,18 @@ body{background:linear-gradient(145deg,#f4f2ea 0%,#f1f0e9 52%,#e9eee8 100%)}
 .landing-callout:after{content:"";position:absolute;width:240px;height:240px;right:6%;top:-35%;border:1px solid rgba(49,91,77,.28);border-radius:50%;box-shadow:0 0 0 25px rgba(49,91,77,.06),0 0 0 58px rgba(49,91,77,.04);pointer-events:none}
 .landing-button{box-shadow:0 8px 20px rgba(17,21,19,.16)}
 @media(max-width:580px){.landing-hero-image{box-shadow:12px 15px 0 rgba(49,91,77,.08),0 18px 45px rgba(17,21,19,.16)}}
+/* Meridian Vivid Silicon Valley visual system */
+:root{--meridian-ink:#071a3d;--meridian-blue:#174dff;--meridian-violet:#8a3ffc;--meridian-coral:#ff6547;--meridian-yellow:#ffd23f;--meridian-green:#27c985;--meridian-pink:#ef65b5;--meridian-paper:#fff7ed}
+body{background:linear-gradient(135deg,#fff8ee 0%,#f4f1ff 48%,#e9f4ff 100%);color:var(--meridian-ink)}
+.landing-hero{background:transparent}
+.landing-hero-image{border:2px solid rgba(23,77,255,.24);box-shadow:20px 22px 0 rgba(138,63,252,.14),0 30px 90px rgba(7,26,61,.22);filter:saturate(1.12) contrast(1.04)}
+.landing-hero-image:after{background:linear-gradient(135deg,rgba(255,101,71,.12),transparent 36%,rgba(39,201,133,.1) 70%,rgba(138,63,252,.14))}
+.landing-block{background:rgba(255,255,255,.5);border:1px solid rgba(23,77,255,.14);box-shadow:0 12px 35px rgba(7,26,61,.06)}
+.landing-block:hover{background:linear-gradient(135deg,rgba(255,255,255,.82),rgba(231,245,255,.76));border-color:rgba(138,63,252,.34);box-shadow:0 22px 55px rgba(23,77,255,.14)}
+.landing-callout{background:linear-gradient(120deg,#071a3d,#173c91 58%,#8a3ffc);color:#fff;border:0;box-shadow:0 26px 70px rgba(23,77,255,.22)}
+.landing-callout:after{border-color:rgba(255,255,255,.35);box-shadow:0 0 0 25px rgba(255,255,255,.08),0 0 0 58px rgba(255,255,255,.04)}
+.landing-button{background:var(--meridian-ink);border:1px solid rgba(255,255,255,.35);box-shadow:0 10px 25px rgba(7,26,61,.24)}
+.landing-button:hover{background:var(--meridian-blue);transform:translateY(-2px)}
+.landing-kicker{color:var(--meridian-violet)}
+.landing-eyebrow{color:var(--meridian-coral)}
+@media(max-width:580px){.landing-hero-image{box-shadow:12px 15px 0 rgba(138,63,252,.14),0 18px 50px rgba(7,26,61,.2)}}
