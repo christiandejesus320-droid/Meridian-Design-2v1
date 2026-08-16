@@ -1,72 +1,72 @@
 window.__MERIDIAN_CHUNKS.push(`
 <style>
-  .meridian-live-world{position:relative;min-height:100vh;padding:110px 34px 72px;background:#080808;color:#f7f2ea;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.08);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  .meridian-live-world{position:relative;min-height:100vh;padding:110px 34px 72px;background:#02070d;color:#f7fbff;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.08);font-family:"Helvetica Neue",Arial,ui-sans-serif,system-ui,sans-serif}
   .meridian-live-world *{box-sizing:border-box}
-  .meridian-live-world::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 72% 30%,rgba(225,122,93,.16),transparent 25%),radial-gradient(circle at 15% 12%,rgba(255,255,255,.06),transparent 22%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,auto,44px 44px,44px 44px;mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.95) 72%,transparent 100%);pointer-events:none}
+  .meridian-live-world::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 72% 30%,rgba(85,199,255,.16),transparent 25%),radial-gradient(circle at 15% 12%,rgba(255,255,255,.06),transparent 22%),linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:auto,auto,44px 44px,44px 44px;mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.95) 72%,transparent 100%);pointer-events:none}
   .meridian-live-shell{position:relative;z-index:2;max-width:1480px;margin:0 auto}
   .meridian-live-top{display:grid;grid-template-columns:minmax(0,.82fr) minmax(520px,1.18fr);gap:52px;align-items:center}
   .meridian-live-copy{max-width:650px}
   .meridian-live-kicker{display:inline-flex;align-items:center;gap:10px;padding:9px 13px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.04);backdrop-filter:blur(12px);font-size:11px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:#c9c3bb}
-  .meridian-live-kicker i{display:block;width:8px;height:8px;border-radius:50%;background:#e17a5d;box-shadow:0 0 0 5px rgba(225,122,93,.12),0 0 24px rgba(225,122,93,.7);animation:meridianLiveBlink 1.8s ease-in-out infinite}
+  .meridian-live-kicker i{display:block;width:8px;height:8px;border-radius:50%;background:#55c7ff;box-shadow:0 0 0 5px rgba(85,199,255,.12),0 0 24px rgba(85,199,255,.7);animation:meridianLiveBlink 1.8s ease-in-out infinite}
   @keyframes meridianLiveBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.48;transform:scale(.78)}}
-  .meridian-live-title{margin:24px 0 18px;font-size:clamp(3.5rem,7vw,7rem);line-height:.86;letter-spacing:-.067em;font-weight:850;color:#f7f2ea}
-  .meridian-live-title span{display:block;color:#e17a5d}
-  .meridian-live-desc{max-width:580px;margin:0;color:#9f9a93;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.7}
-  .meridian-live-note{display:flex;gap:10px;align-items:flex-start;margin-top:20px;color:#6e6a65;font-size:12px;line-height:1.5}
-  .meridian-live-note b{color:#9b958e;font-weight:650}
+  .meridian-live-title{margin:24px 0 18px;font-size:clamp(3.5rem,7vw,7rem);line-height:.92;letter-spacing:-.045em;font-weight:800;color:#f7fbff}
+  .meridian-live-title span{display:block;color:#55c7ff}
+  .meridian-live-desc{max-width:580px;margin:0;color:#91aabd;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.7}
+  .meridian-live-note{display:flex;gap:10px;align-items:flex-start;margin-top:20px;color:#6f879b;font-size:12px;line-height:1.5}
+  .meridian-live-note b{color:#b4d8ed;font-weight:650}
   .meridian-live-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
   .meridian-live-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:12px;text-decoration:none;font-size:13px;font-weight:750;transition:.2s ease}
-  .meridian-live-actions .primary{background:#f4efe5;color:#111;border:1px solid #f4efe5}
+  .meridian-live-actions .primary{background:#55c7ff;color:#02101a;border:1px solid #55c7ff}
   .meridian-live-actions .primary:hover{transform:translateY(-2px);background:#fff}
-  .meridian-live-actions .secondary{background:rgba(255,255,255,.04);color:#d8d2ca;border:1px solid rgba(255,255,255,.12)}
-  .meridian-live-actions .secondary:hover{border-color:rgba(225,122,93,.55);color:#fff}
+  .meridian-live-actions .secondary{background:rgba(255,255,255,.04);color:#c9e8f7;border:1px solid rgba(255,255,255,.12)}
+  .meridian-live-actions .secondary:hover{border-color:rgba(85,199,255,.55);color:#fff}
   .meridian-live-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:38px}
   .meridian-live-metric{padding:16px 14px;border:1px solid rgba(255,255,255,.09);border-radius:15px;background:rgba(255,255,255,.025);min-width:0}
   .meridian-live-metric strong{display:block;font-size:clamp(1.45rem,2.6vw,2.2rem);letter-spacing:-.04em;color:#fff;font-weight:820;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .meridian-live-metric span{display:block;margin-top:5px;font-size:9px;line-height:1.3;letter-spacing:.13em;text-transform:uppercase;color:#77726d;font-weight:760}
+  .meridian-live-metric span{display:block;margin-top:5px;font-size:9px;line-height:1.3;letter-spacing:.13em;text-transform:uppercase;color:#7f9caf;font-weight:760}
   .meridian-world-visual{position:relative;min-height:680px;display:flex;align-items:center;justify-content:center}
   .meridian-world-orbit{position:absolute;width:min(690px,90%);aspect-ratio:1;border:1px solid rgba(255,255,255,.06);border-radius:50%;box-shadow:0 0 0 60px rgba(255,255,255,.015),0 0 0 120px rgba(255,255,255,.01);pointer-events:none}
-  .meridian-world-orbit::before,.meridian-world-orbit::after{content:'';position:absolute;inset:12%;border:1px dashed rgba(225,122,93,.11);border-radius:50%;transform:rotate(28deg) scaleY(.38)}
+  .meridian-world-orbit::before,.meridian-world-orbit::after{content:'';position:absolute;inset:12%;border:1px dashed rgba(85,199,255,.11);border-radius:50%;transform:rotate(28deg) scaleY(.38)}
   .meridian-world-orbit::after{inset:25%;transform:rotate(-22deg) scaleY(.62);border-color:rgba(255,255,255,.07)}
   .meridian-world-frame{position:relative;width:min(650px,92vw);aspect-ratio:1;display:flex;align-items:center;justify-content:center;transition:filter .25s ease}
-  .meridian-world-frame.is-pulsing{filter:drop-shadow(0 0 26px rgba(225,122,93,.45))}
-  .meridian-world-frame::after{content:'';position:absolute;inset:7%;border:1px solid rgba(225,122,93,.08);border-radius:50%;pointer-events:none;animation:meridianWorldHalo 3.2s ease-out infinite}
+  .meridian-world-frame.is-pulsing{filter:drop-shadow(0 0 26px rgba(85,199,255,.45))}
+  .meridian-world-frame::after{content:'';position:absolute;inset:7%;border:1px solid rgba(85,199,255,.08);border-radius:50%;pointer-events:none;animation:meridianWorldHalo 3.2s ease-out infinite}
   @keyframes meridianWorldHalo{0%{transform:scale(.9);opacity:.45}75%,100%{transform:scale(1.08);opacity:0}}
   #meridian-globe-canvas{width:100%;height:100%;display:block;cursor:grab;touch-action:none;filter:drop-shadow(0 30px 70px rgba(0,0,0,.72))}
   #meridian-globe-canvas:active{cursor:grabbing}
-  .meridian-world-status{position:absolute;top:8%;left:4%;z-index:4;display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:11px;border:1px solid rgba(255,255,255,.1);background:rgba(10,10,10,.72);backdrop-filter:blur(18px);font-size:10px;font-weight:760;letter-spacing:.12em;text-transform:uppercase;color:#8f8a84}
+  .meridian-world-status{position:absolute;top:8%;left:4%;z-index:4;display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:11px;border:1px solid rgba(255,255,255,.1);background:rgba(2,12,21,.82);backdrop-filter:blur(18px);font-size:10px;font-weight:760;letter-spacing:.12em;text-transform:uppercase;color:#9fc5da}
   .meridian-world-status i{width:6px;height:6px;border-radius:50%;background:#777;transition:.2s ease}
   .meridian-world-status.online i{background:#6ee7a2;box-shadow:0 0 18px rgba(110,231,162,.7)}
-  .meridian-world-status.online{color:#c4c0ba}
-  .meridian-world-caption{position:absolute;right:3%;bottom:10%;z-index:4;width:205px;padding:14px 15px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(10,10,10,.72);backdrop-filter:blur(18px)}
+  .meridian-world-status.online{color:#d2f0ff}
+  .meridian-world-caption{position:absolute;right:3%;bottom:10%;z-index:4;width:205px;padding:14px 15px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(2,12,21,.82);backdrop-filter:blur(18px)}
   .meridian-world-caption small{display:block;color:#6f6a65;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:760}
-  .meridian-world-caption strong{display:block;margin-top:6px;color:#eee8df;font-size:13px;line-height:1.45;font-weight:650}
-  .meridian-world-controls{position:absolute;left:4%;bottom:10%;z-index:4;padding:10px 12px;border:1px solid rgba(255,255,255,.09);border-radius:11px;background:rgba(10,10,10,.66);backdrop-filter:blur(16px);color:#8e8982;font-size:9px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+  .meridian-world-caption strong{display:block;margin-top:6px;color:#f1faff;font-size:13px;line-height:1.45;font-weight:650}
+  .meridian-world-controls{position:absolute;left:4%;bottom:10%;z-index:4;padding:10px 12px;border:1px solid rgba(255,255,255,.09);border-radius:11px;background:rgba(2,12,21,.78);backdrop-filter:blur(16px);color:#9fc5da;font-size:9px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
   .meridian-live-panels{display:grid;grid-template-columns:1.18fr .9fr .82fr;gap:12px;margin-top:26px}
   .meridian-live-panel{min-height:310px;border:1px solid rgba(255,255,255,.09);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));overflow:hidden}
   .meridian-live-panel-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
-  .meridian-live-panel-head h3{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#b9b3ac;font-weight:800}
-  .meridian-live-panel-head span{font-size:10px;color:#5f5b57}
+  .meridian-live-panel-head h3{margin:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#c7e8f8;font-weight:800}
+  .meridian-live-panel-head span{font-size:10px;color:#7794a8}
   .meridian-live-feed,.meridian-review-list,.meridian-city-list{padding:8px;max-height:380px;overflow:auto;scrollbar-width:thin;scrollbar-color:#252525 transparent}
   .meridian-live-row{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:11px;align-items:center;padding:12px 10px;border-radius:12px;transition:.18s ease}
   .meridian-live-row:hover{background:rgba(255,255,255,.035)}
-  .meridian-live-row .event-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(225,122,93,.11);border:1px solid rgba(225,122,93,.13);font-size:12px;color:#e59a83}
-  .meridian-live-row strong{display:block;color:#e7e1d9;font-size:12px;font-weight:670;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meridian-live-row .event-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(85,199,255,.11);border:1px solid rgba(85,199,255,.13);font-size:12px;color:#8ad9ff}
+  .meridian-live-row strong{display:block;color:#eaf8ff;font-size:12px;font-weight:670;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .meridian-live-row small{display:block;margin-top:3px;color:#6f6a65;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .meridian-live-row time{font-size:9px;color:#5e5955;text-align:right}
-  .meridian-empty{padding:36px 18px;color:#68635e;font-size:11px;line-height:1.7;text-align:center}
+  .meridian-live-row time{font-size:9px;color:#6d899d;text-align:right}
+  .meridian-empty{padding:36px 18px;color:#6e8da3;font-size:11px;line-height:1.7;text-align:center}
   .meridian-review{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.055)}
   .meridian-review:last-child{border-bottom:0}
-  .meridian-review-stars{font-size:10px;letter-spacing:2px;color:#e17a5d}
-  .meridian-review p{margin:8px 0 10px;color:#c9c2ba;font-size:12px;line-height:1.55}
+  .meridian-review-stars{font-size:10px;letter-spacing:2px;color:#55c7ff}
+  .meridian-review p{margin:8px 0 10px;color:#c4e3f2;font-size:12px;line-height:1.55}
   .meridian-review footer{display:flex;justify-content:space-between;gap:12px;color:#68635f;font-size:9px}
-  .meridian-review footer b{color:#8f8983;font-weight:650}
+  .meridian-review footer b{color:#a6cce1;font-weight:650}
   .meridian-city{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 11px;border-bottom:1px solid rgba(255,255,255,.05)}
   .meridian-city:last-child{border-bottom:0}
-  .meridian-city i{width:7px;height:7px;border-radius:50%;background:#e17a5d;box-shadow:0 0 16px rgba(225,122,93,.45)}
-  .meridian-city strong{font-size:11px;color:#d0c9c1;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .meridian-city span{font-size:9px;color:#68635e}
-  .meridian-live-footnote{margin:18px 2px 0;color:#514d49;font-size:9px;line-height:1.55;text-align:right}
+  .meridian-city i{width:7px;height:7px;border-radius:50%;background:#55c7ff;box-shadow:0 0 16px rgba(85,199,255,.45)}
+  .meridian-city strong{font-size:11px;color:#d6effb;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .meridian-city span{font-size:9px;color:#6e8da3}
+  .meridian-live-footnote{margin:18px 2px 0;color:#618399;font-size:9px;line-height:1.55;text-align:right}
   @media(max-width:1080px){.meridian-live-top{grid-template-columns:1fr}.meridian-live-copy{max-width:780px}.meridian-world-visual{min-height:560px}.meridian-live-panels{grid-template-columns:1fr 1fr}.meridian-live-panel:first-child{grid-column:1/-1}}
   @media(max-width:720px){.meridian-live-world{padding:88px 16px 50px}.meridian-live-title{font-size:clamp(3.1rem,17vw,5.2rem)}.meridian-live-metrics{grid-template-columns:1fr 1fr}.meridian-world-visual{min-height:430px;margin-top:20px}.meridian-world-status{top:4%;left:0}.meridian-world-caption{right:0;bottom:2%;width:180px}.meridian-live-panels{grid-template-columns:1fr}.meridian-live-panel:first-child{grid-column:auto}.meridian-live-panel{min-height:250px}}
   @media(prefers-reduced-motion:reduce){.meridian-live-kicker i,.meridian-world-frame::after{animation:none}.meridian-live-actions a{transition:none}}
@@ -204,7 +204,7 @@ window.__MERIDIAN_CHUNKS.push(`
     var canvas=$("meridian-globe-canvas"); if(!canvas||typeof createGlobe==="undefined"||globe)return;
     var size=Math.max(340,Math.round(canvas.getBoundingClientRect().width||620));
     var zoom=1;
-    globe=createGlobe(canvas,{devicePixelRatio:Math.min(window.devicePixelRatio||1,2),width:size*2,height:size*2,phi:0,theta:.18,scale:zoom,dark:1,diffuse:1.25,mapSamples:18000,mapBrightness:7.5,baseColor:[.17,.17,.17],markerColor:[.88,.48,.36],glowColor:[.07,.055,.045],markers:currentMarkers,markerElevation:.035});
+    globe=createGlobe(canvas,{devicePixelRatio:Math.min(window.devicePixelRatio||1,2),width:size*2,height:size*2,phi:0,theta:.18,scale:zoom,dark:1,diffuse:1.25,mapSamples:18000,mapBrightness:7.5,baseColor:[.06,.16,.22],markerColor:[.32,.78,.98],glowColor:[.02,.12,.2],markers:currentMarkers,markerElevation:.035});
     canvas.addEventListener('pointerdown',function(e){pointer={x:e.clientX,y:e.clientY};paused=true;canvas.setPointerCapture&&canvas.setPointerCapture(e.pointerId);canvas.style.cursor='grabbing';});
     canvas.addEventListener('pointerup',function(e){if(pointer){phiOffset+=drag.phi;thetaOffset+=drag.theta;drag={phi:0,theta:0};}pointer=null;paused=false;canvas.releasePointerCapture&&canvas.releasePointerCapture(e.pointerId);canvas.style.cursor='grab';});
     canvas.addEventListener('pointercancel',function(){pointer=null;drag={phi:0,theta:0};paused=false;canvas.style.cursor='grab';});
