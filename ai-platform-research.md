@@ -25,3 +25,18 @@ La nueva experiencia debe presentar Meridian como un sistema, no solo como un es
 ## Verificación local
 
 La vista local muestra correctamente el menú sin el botón NOVAXCO y añade los módulos Meridian App, MCP Connectors, Model Router, Creative Lab, Agents/Evals/Guardrails y Updates. Los enlaces externos y el vídeo local aparecen en el DOM. La consola no registra errores bloqueantes; solo persiste el aviso no bloqueante de Supabase sobre múltiples instancias de GoTrueClient.
+
+## Recursos visuales públicos encontrados
+
+La búsqueda visual encontró referencias de un mapa de clientes y servidores MCP de Andreessen Horowitz, diagramas de arquitectura MCP, dashboards de AI y productividad, y laboratorios futuristas generados por IA. Se conservarán como referencias visuales o enlaces atribuidos, no como activos copiados sin licencia.
+
+- MCP Market Map / Andreessen Horowitz: imagen local de referencia en `/home/ubuntu/upload/search_images/DNRXLqyZP3Ii.png`.
+- MCP architecture diagram / Addy Osmani: imagen local de referencia en `/home/ubuntu/upload/search_images/VRhoK7GKNjrt.png`.
+- MCP deep dive / Andreessen Horowitz: imagen local de referencia en `/home/ubuntu/upload/search_images/ikRMQs8hxPoT.png`.
+- AI Dashboard Design: imagen local de referencia en `/home/ubuntu/upload/search_images/lMs05DCaEblU.webp`.
+- AI productivity dashboard: imagen local de referencia en `/home/ubuntu/upload/search_images/S52ZdZ2Ji7cO.png`.
+- Vídeo OpenAI × Figma sobre MCP: https://www.youtube.com/watch?v=_4LgsMQJoRY
+
+## Actualización biográfica
+
+La vista local confirma que el menú incluye `Fundador`, que la fotografía proporcionada se carga desde `assets/christian-junior-de-jesus.jpeg`, y que aparecen la biografía editorial, los datos de base/foco/ahora, documentos, herramientas públicas y enlaces profesionales. La consola no muestra errores bloqueantes; permanece únicamente el aviso no bloqueante de Supabase sobre múltiples instancias de GoTrueClient.
