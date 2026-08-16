@@ -1,0 +1,76 @@
+{
+  "name": "Meridian Skill Library",
+  "version": "2026.08",
+  "source_repository": "https://github.com/vercel-labs/skills",
+  "policy": "Curated and installed only when relevant; no indiscriminate bulk installation.",
+  "installed": [
+    {
+      "name": "find-skills",
+      "path": "skills/find-skills/SKILL.md",
+      "source": "vercel-labs/skills",
+      "status": "available"
+    }
+  ],
+  "curated_queue": [
+    {
+      "name": "frontend-design",
+      "category": "web/design",
+      "status": "queued",
+      "purpose": "Diseñar landings y sistemas visuales."
+    },
+    {
+      "name": "web-design-guidelines",
+      "category": "web/a11y",
+      "status": "queued",
+      "purpose": "Revisar accesibilidad y patrones web."
+    },
+    {
+      "name": "seo",
+      "category": "content/discovery",
+      "status": "queued",
+      "purpose": "Estructurar páginas y metadatos."
+    },
+    {
+      "name": "content-strategy",
+      "category": "editorial",
+      "status": "queued",
+      "purpose": "Crear investigación, noticias y publicaciones."
+    },
+    {
+      "name": "brand-system",
+      "category": "identity",
+      "status": "queued",
+      "purpose": "Mantener Meridian consistente."
+    },
+    {
+      "name": "mcp-integration",
+      "category": "platform",
+      "status": "queued",
+      "purpose": "Documentar herramientas y conectores MCP."
+    },
+    {
+      "name": "ai-product-copy",
+      "category": "product",
+      "status": "queued",
+      "purpose": "Escribir heroes, CTA y páginas de producto."
+    },
+    {
+      "name": "case-study",
+      "category": "editorial",
+      "status": "queued",
+      "purpose": "Convertir proyectos en historias visuales."
+    },
+    {
+      "name": "performance",
+      "category": "web/quality",
+      "status": "queued",
+      "purpose": "Optimizar carga, imágenes y responsive."
+    },
+    {
+      "name": "skill-creator",
+      "category": "operations",
+      "status": "queued",
+      "purpose": "Crear nuevas skills internas verificables."
+    }
+  ]
+}
