@@ -79,3 +79,46 @@ body.system-page{--sys-ink:#f7f3ea;--sys-muted:#a8a69f;--sys-bg:#07090f;--sys-pa
 /* Meridian ecosystem extension — sky / black / white */
 .build-public-hero-copy{background:linear-gradient(145deg,#02070d,#06233d)!important}.build-cta{background:#55c7ff;color:#02101a}.build-link{color:#d9f3ff}.build-public-hero-visual{background:radial-gradient(circle at 50% 48%,rgba(85,199,255,.2),transparent 18%),radial-gradient(circle at 80% 20%,rgba(154,223,255,.18),transparent 25%),linear-gradient(135deg,#02070d,#06233d 58%,#07131e)}.build-orbit{border-color:rgba(85,199,255,.42);box-shadow:0 0 60px rgba(85,199,255,.16)}.build-orbit.orbit-b{border-color:rgba(189,234,255,.42)}.build-core{background:linear-gradient(145deg,rgba(85,199,255,.24),rgba(2,12,21,.9));box-shadow:inset 0 0 40px rgba(255,255,255,.08),0 25px 80px rgba(0,0,0,.5)}.build-core span{color:#bdeaff}.build-core b{color:#f7fbff}.node-anthropic{color:#bdeaff}.node-mcp{color:#9adfff}.node-data{color:#55c7ff}.build-card h4{color:#f7fbff}.build-card p{color:#9db6c7}.build-meta a{color:#dff6ff}.build-card-top span:last-child{color:#7f9caf}.build-openai,.build-vercel,.build-notion{--card-glow:rgba(255,255,255,.14)}.build-anthropic,.build-cursor{--card-glow:rgba(189,234,255,.2)}.build-mcp,.build-google{--card-glow:rgba(85,199,255,.2)}.build-supabase,.build-nvidia{--card-glow:rgba(123,220,255,.2)}.build-github,.build-aws{--card-glow:rgba(154,223,255,.18)}
 @media(max-width:560px){.build-card h4{font-size:2.2rem}}
+
+/* Meridian Black System v1 — shared identity with Meridian API and Meridian App */
+:root{
+  --meridian-bg:#050505;
+  --meridian-surface:#0b0b0d;
+  --meridian-elevated:#111114;
+  --meridian-ink:#f4f4f0;
+  --meridian-muted:#99999f;
+  --meridian-line:rgba(255,255,255,.12);
+  --meridian-accent:#e8ff55;
+  --meridian-accent-soft:rgba(232,255,85,.12);
+  --meridian-tech:#9b8cff;
+  --meridian-danger:#ff6b6b;
+  --meridian-radius:12px;
+  --meridian-font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --meridian-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+}
+.system-page{--sys-ink:var(--meridian-ink);--sys-muted:var(--meridian-muted);--sys-bg:var(--meridian-bg);--sys-panel:var(--meridian-surface);--sys-line:var(--meridian-line);--sys-cyan:var(--meridian-accent);--sys-coral:var(--meridian-accent);--sys-lime:var(--meridian-accent);--sys-violet:var(--meridian-tech);font-family:var(--meridian-font);background:var(--meridian-bg);color:var(--meridian-ink)}
+.system-page::before{background:radial-gradient(circle at 88% 8%,rgba(232,255,85,.08),transparent 25%),radial-gradient(circle at 12% 76%,rgba(155,140,255,.07),transparent 24%),var(--meridian-bg)}
+.system-page::after{opacity:.1;background-size:56px 56px}
+.system-nav{background:rgba(5,5,5,.82);border-color:var(--meridian-line)}
+.system-logo,.system-links a,.system-footer a{font-family:var(--meridian-font)}
+.system-logo i{background:var(--meridian-accent);box-shadow:0 0 20px rgba(232,255,85,.32)}
+.system-links .system-nav-cta{background:var(--meridian-ink);color:var(--meridian-bg)}
+.system-button{border-radius:var(--meridian-radius);font-family:var(--meridian-font);transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease}
+.system-button.primary{background:var(--meridian-accent);color:var(--meridian-bg);box-shadow:0 12px 34px rgba(232,255,85,.12)}
+.system-button.accent{background:var(--meridian-accent);color:var(--meridian-bg)}
+.system-button:hover{border-color:var(--meridian-accent);box-shadow:0 12px 34px rgba(232,255,85,.13)}
+.system-kicker,.system-card .card-index,.paypal-label{color:var(--meridian-accent)}
+.system-kicker::before{box-shadow:0 0 16px var(--meridian-accent)}
+.system-card,.contact-panel,.contact-form,.plan-card{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border-color:var(--meridian-line);border-radius:var(--meridian-radius);box-shadow:0 20px 70px rgba(0,0,0,.22)}
+.system-card h3,.contact-panel h2,.contact-form h2{font-family:var(--meridian-font)}
+.system-card li,.plan-features li{border-color:var(--meridian-line)}
+.field input,.field textarea,.field select{background:var(--meridian-elevated);border-color:var(--meridian-line);font-family:var(--meridian-font)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--meridian-accent);box-shadow:0 0 0 3px var(--meridian-accent-soft)}
+.integration-pill.hot{border-color:rgba(232,255,85,.5);color:var(--meridian-ink);box-shadow:0 0 26px rgba(232,255,85,.09)}
+.cosmos-stage{background:radial-gradient(circle at center,rgba(232,255,85,.11),rgba(11,11,13,.9) 34%,var(--meridian-bg) 74%);border-color:var(--meridian-line)}
+.cosmos-core{background:radial-gradient(circle at 36% 31%,#fff 0 2%,var(--meridian-accent) 6%,#59660d 35%,#101114 73%);box-shadow:0 0 40px rgba(232,255,85,.25),0 0 110px rgba(232,255,85,.12)}
+.plan-card.featured{background:linear-gradient(160deg,rgba(232,255,85,.12),rgba(155,140,255,.07));border-color:rgba(232,255,85,.46)}
+.plan-badge{background:var(--meridian-accent);color:var(--meridian-bg)}
+.system-footer{border-color:var(--meridian-line)}
+@media(max-width:760px){.system-shell{width:min(100% - 28px,1180px)}.system-nav-inner{height:64px}.system-hero{padding:64px 0 50px}.system-hero h1,.system-title{font-size:clamp(3rem,14vw,5.2rem);line-height:.9}.system-section{padding:72px 0}.system-section-heading h2{font-size:clamp(2.5rem,12vw,4.4rem)}.system-actions{display:grid;grid-template-columns:1fr}.system-button{width:100%;min-height:48px}.hero-signal{min-height:285px;border-radius:var(--meridian-radius)}.system-grid{gap:10px}.system-card{padding:20px}.contact-panel,.contact-form{padding:22px;border-radius:var(--meridian-radius)}}
+@media(prefers-reduced-motion:reduce){.system-page *,.system-page *::before,.system-page *::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
