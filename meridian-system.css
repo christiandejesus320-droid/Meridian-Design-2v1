@@ -122,3 +122,14 @@ body.system-page{--sys-ink:#f7f3ea;--sys-muted:#a8a69f;--sys-bg:#07090f;--sys-pa
 .system-footer{border-color:var(--meridian-line)}
 @media(max-width:760px){.system-shell{width:min(100% - 28px,1180px)}.system-nav-inner{height:64px}.system-hero{padding:64px 0 50px}.system-hero h1,.system-title{font-size:clamp(3rem,14vw,5.2rem);line-height:.9}.system-section{padding:72px 0}.system-section-heading h2{font-size:clamp(2.5rem,12vw,4.4rem)}.system-actions{display:grid;grid-template-columns:1fr}.system-button{width:100%;min-height:48px}.hero-signal{min-height:285px;border-radius:var(--meridian-radius)}.system-grid{gap:10px}.system-card{padding:20px}.contact-panel,.contact-form{padding:22px;border-radius:var(--meridian-radius)}}
 @media(prefers-reduced-motion:reduce){.system-page *,.system-page *::before,.system-page *::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+/* Global entry-point lock: index.html and public landing pages load this sheet. */
+body{background:var(--meridian-bg,#050505)!important;color:var(--meridian-ink,#f4f4f0);font-family:var(--meridian-font,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif)}
+.landing-nav{background:rgba(5,5,5,.84)!important;border-color:var(--meridian-line,rgba(255,255,255,.12))!important}
+.landing-logo,.landing-nav nav a,.landing-nav-cta,.landing-text-link{color:var(--meridian-ink,#f4f4f0)!important}
+.landing-nav-cta,.landing-button{background:var(--meridian-accent,#e8ff55)!important;color:var(--meridian-bg,#050505)!important;border-color:transparent!important;border-radius:var(--meridian-radius,12px)!important}
+.landing-kicker,.landing-section-label,.landing-block>span{color:var(--meridian-accent,#e8ff55)!important}
+.landing-hero-copy>p,.landing-block p{color:var(--meridian-muted,#99999f)!important}
+.landing-block{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.015))!important;border-color:var(--meridian-line,rgba(255,255,255,.12))!important}
+.landing-callout{background:linear-gradient(145deg,var(--meridian-surface,#0b0b0d),#171719)!important;color:var(--meridian-ink,#f4f4f0)!important;border-color:var(--meridian-line,rgba(255,255,255,.12))!important}
+.landing-footer{background:var(--meridian-surface,#0b0b0d)!important;color:var(--meridian-ink,#f4f4f0)!important}.landing-footer .landing-logo,.landing-footer a{color:var(--meridian-ink,#f4f4f0)!important}.footer-grid b{color:var(--meridian-accent,#e8ff55)!important}.footer-grid p,.footer-bottom{color:var(--meridian-muted,#99999f)!important}
