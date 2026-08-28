@@ -40,3 +40,17 @@ El video es una etiqueta HTML5 real con `controls`, `preload=metadata`, `playsin
 `assets/meridian-vivid-hero.jpg` presenta una esfera de vidrio azul con anillos naranja y violeta sobre pedestal negro. Tiene buen contraste y espacio negativo, pero se siente como un visual genérico de tecnología y no comparte el lenguaje material del video espacial.
 
 `assets/meridian-3d-orbit.jpg` presenta una composición clara con bloques, anillos y nodos suspendidos. Funciona como poster, pero su fondo claro, exceso de elementos pequeños y tratamiento de render 3D la alejan de la experiencia OLED premium. La nueva dirección debe unificar los assets con negro profundo, luz cálida controlada, una señal roja funcional y superficies de producto reconocibles.
+
+## Deployment Vercel
+
+El proyecto nuevo `meridian-design-global` quedó visible en Vercel con el repositorio `christiandejesus320-droid/Meridian-Design-2v1` conectado. La pantalla Git confirma `Connected just now`.
+
+La primera vista de Deployments mostró `No Production Deployment` y `Status Error`; la consulta programática de deployments devolvió 403 por permisos del conector, no un error de build legible. Se disparó un nuevo commit vacío `adff6c6` en `main` para que Vercel procese el repositorio ahora que la conexión Git está activa. Pendiente: revisar si el deployment aparece y si la URL pública carga la app completa.
+
+## Deployment en curso
+
+La lista de Vercel ya muestra el commit `adff6c6` con mensaje `chore: trigger meridian production deployment`, rama `main`, entorno `Production` y estado `Building`. Esto confirma que la conexión Git funciona y que Vercel está procesando la aplicación; todavía no hay que tratarlo como deployment final hasta que el estado cambie a Ready.
+
+## Estado de producción actualizado
+
+Vercel detectó el commit `adff6c6` y mostró una fila de producción con estado `Building`, pero después la vista resumió el proyecto como `Status Error`. La URL visible de deployment fue `meridian-design-global-l42qtbl7f-nexus-labs1.vercel.app`; la API de Vercel devolvió 404 al solicitarla, así que se debe abrir la fila desde el panel para identificar el build log exacto. No se ha desactivado ninguna protección ni se ha modificado el proyecto existente `meridian-completo`.
