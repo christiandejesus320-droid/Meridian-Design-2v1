@@ -146,10 +146,10 @@
         headers: { 'Content-Type': 'application/json', 'Accept': 'text/event-stream', 'Idempotency-Key': crypto.randomUUID() },
         body: JSON.stringify({ message, conversationId, chatHistory: [] }),
       });
-      if (response.status === 401 || response.status === 403 || response.status === 404) {
-        throw new Error('Esta web necesita la sesión segura de Meridian para abrir el chat real.');
+      if (response.status === 401 || response.status === 403 || response.status === 404 || response.status === 501) {
+        throw new Error('El chat operativo se abre desde el workspace seguro de Meridian para conservar MCPs, skills y tu sesión.');
       }
-      if (!response.ok) throw new Error(`Meridian respondió con ${response.status}.`);
+      if (!response.ok) throw new Error('La conexión operativa de Meridian no está disponible en este origen.');
       await consumeSse(response);
     } catch (error) {
       const messageText = error instanceof Error ? error.message : 'No se pudo abrir el chat.';
