@@ -2,13 +2,22 @@
   const video = document.querySelector('[data-video]');
   const voiceButton = document.querySelector('[data-voice]');
   const shareButton = document.querySelector('[data-share]');
+  const timeLabel = document.querySelector('[data-time]');
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('#main-nav');
   const header = document.querySelector('[data-header]');
 
+  const formatTime = (seconds) => {
+    const safeSeconds = Number.isFinite(seconds) ? Math.max(0, Math.floor(seconds)) : 0;
+    return `${String(Math.floor(safeSeconds / 60)).padStart(2, '0')}:${String(safeSeconds % 60).padStart(2, '0')}`;
+  };
+
   if (video) {
     video.defaultPlaybackRate = 0.72;
     video.playbackRate = 0.72;
+    video.addEventListener('timeupdate', () => {
+      if (timeLabel) timeLabel.textContent = `${formatTime(video.currentTime)} / SLOW CINEMA`;
+    });
     const match = window.location.hash.match(/meridian-video&t=(\d+)/);
     if (match) {
       video.addEventListener('loadedmetadata', () => { video.currentTime = Number(match[1]); }, { once: true });
