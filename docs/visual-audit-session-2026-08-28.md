@@ -28,3 +28,15 @@ El hero actualizado sí renderiza en el preview local con una jerarquía de dos 
 El desplazamiento del preview confirma que el contenido textual y las siguientes secciones siguen presentes. El reproductor aparece como elemento real HTML5 con controles nativos y el asset responde con `Content-type: video/mp4` y tamaño de 38,431,657 bytes.
 
 Pendiente de validación: probar play/mute/seek en navegador y confirmar el deployment después de publicar. La producción de Vercel continúa protegida por login en la URL auditada.
+
+## Validación del hero audiovisual
+
+La portada local actualizada renderiza `MERIDIAN / UNIVERSAL WORKSPACE` junto a `MERIDIAN / SPATIAL FIELD`. El poster/video espacial se ve dentro de una superficie OLED con marco sutil y la jerarquía principal queda visible en el primer viewport. El contenido extraído confirma el texto de producto, `20:08 / SLOW CINEMA`, caption y `Share ↗`.
+
+El video es una etiqueta HTML5 real con `controls`, `preload=metadata`, `playsinline`, poster local y source local. El script establece playback lento `0.72x` y Share usa Web Share API con fallback de clipboard. El asset local responde como `video/mp4`.
+
+## Auditoría de assets visuales
+
+`assets/meridian-vivid-hero.jpg` presenta una esfera de vidrio azul con anillos naranja y violeta sobre pedestal negro. Tiene buen contraste y espacio negativo, pero se siente como un visual genérico de tecnología y no comparte el lenguaje material del video espacial.
+
+`assets/meridian-3d-orbit.jpg` presenta una composición clara con bloques, anillos y nodos suspendidos. Funciona como poster, pero su fondo claro, exceso de elementos pequeños y tratamiento de render 3D la alejan de la experiencia OLED premium. La nueva dirección debe unificar los assets con negro profundo, luz cálida controlada, una señal roja funcional y superficies de producto reconocibles.
